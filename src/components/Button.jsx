@@ -45,10 +45,30 @@ import "./Button.css";
  *   - Reference Button.css to see existing styles.
  */
 
-export function Button({children}) {
+export function Button({
+  children,
+  variant="fill",
+  color="primary",
+  size="medium",
+  disabled=false,
+  icon,
+  onClick
+}) {
+  const classes = [
+    "button",
+    `variant-${variant}`,
+    `size-${size}`,
+    `color-${color}`,
+    disabled ? "disabled" : ""
+  ].filter(Boolean).join(" ");
   return (
-    <button>
-        {children}
+    <button
+      className={classes}
+      disabled={disabled}
+      onClick={onClick}
+    >
+      {icon && <span className="icon">{icon}</span>}
+      {children}
     </button>
   );
 }
